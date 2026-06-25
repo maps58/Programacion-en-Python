@@ -1,0 +1,31 @@
+#Operadores Logicos.
+
+"""
+Los operadores lógicos en Python (and, or, not) permiten combinar y evaluar múltiples condiciones.
+Devuelven un valor booleano (True o False) y son fundamentales para la toma de decisiones en el flujo 
+de tus programas.
+
+Operador AND (Y lógico)Retorna True solo si ambos lados son verdaderos. Si alguno es False, el resultado será False.
+Operador OR (O LÓGICO): Retorna True si al menos uno de los dos lados es verdadero. Solo retorna False si ambos son falsos.
+Operador NOT (inversion): Retorna un False si la variable involucrada es True, y lo contrario.
+"""
+
+a = True; print (a)   # imprime True
+b = False; print (b)  # imprime False 
+
+# or is True si uno de las 2 variables o ambas son True
+c = True or False;  print (f"c es: {c}")  #imprime True
+# and is True solo si ambas son True
+d = False and True;  print(f"d es: {d}") #imprime False
+
+# not negates the boolean
+e = not ((c and d) or True); print (f"e es: {e}") #imprime f es: False
+
+x = 10
+f = (x > 5); print (f"f es: {f}")   # imprime f es: True
+
+g = (x <= 12); print (f"g es: {g}") # imprime g es: True
+
+h = (x == 9); print (f"h es: {h}")  # imprime  h es: False
+
+i = (x != 10); print (f"i es: {i}")  # imprime  i es: False
