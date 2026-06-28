@@ -1,0 +1,54 @@
+"""
+Una calculadora de código de colores de resistencias en Python
+toma los colores de las bandas ingresados por el usuario y los procesa 
+mediante un diccionario para calcular el valor nominal en ohms, el multiplicador y la tolerancia.
+"""
+#Ing. Miguel Angel Pérez Solano.
+#Instituto Tecnologico de Oaxaca.
+#Departamento de Ingeniería Eléctrica y Electrónica.
+
+
+
+# Diccionario de colores para el código de resistencias de 4 bandas
+colores_valores = {
+    "negro": 0, "café": 1, "rojo": 2, "naranja": 3, "amarillo": 4,
+    "verde": 5, "azul": 6, "violeta": 7, "gris": 8, "blanco": 9
+}
+
+colores_multiplicadores = {
+    "negro": 1, "café": 10, "rojo": 100, "naranja": 1000, 
+    "amarillo": 10000, "verde": 100000, "azul": 1000000
+}
+
+colores_tolerancia = {
+    "café": "1%", "rojo": "2%", "oro": "5%", "plata": "10%"
+}
+
+def calcular_resistencia():
+    print("=== Calculadora de Resistencias (4 bandas) ===")
+    
+    # Solicitar colores al usuario
+    b1 = input("Color banda 1: ").lower()
+    b2 = input("Color banda 2: ").lower()
+    mult = input("Color multiplicador: ").lower()
+    tol = input("Color tolerancia (ej. oro, plata): ").lower()
+
+    if b1 in colores_valores and b2 in colores_valores and mult in colores_multiplicadores and tol in colores_tolerancia:
+        # Concatenar los dos primeros dígitos
+        valor_base = str(colores_valores[b1]) + str(colores_valores[b2])
+        valor_total = int(valor_base) * colores_multiplicadores[mult]
+        
+        # Formato para Ohms, KOhms o MOhms
+        if valor_total >= 1000000:
+            print(f"Valor: {valor_total / 1000000} MOhms")
+        elif valor_total >= 1000:
+            print(f"Valor: {valor_total / 1000} KOhms")
+        else:
+            print(f"Valor: {valor_total} Ohms")
+            
+        print(f"Tolerancia: {colores_tolerancia[tol]}")
+    else:
+        print("Error: Ingresaste un color no válido. Intenta de nuevo.")
+
+calcular_resistencia()
+
