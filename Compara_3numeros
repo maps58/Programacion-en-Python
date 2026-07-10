@@ -1,0 +1,23 @@
+num1 = int(input("Ingrese el primer numero: "))
+num2 = int(input("Ingrese el segundo numero: "))
+num3 = int(input("Ingrese el tercer numero: "))
+ 
+# Temporalmente asumiremos que num1 es el mayor
+
+NumMay = num1
+
+# Checamos si num2 es mayor que NumMay
+# y se actualiza NumMay si resulta TRUE
+
+
+if num2 > NumMay:
+    NumMay = num2
+
+# Checamos si num3 es mayor que NumMay
+# y se actualiza NumMay si resulta TRUE 
+if num3 > NumMay:
+    NumMay = num3
+ 
+# Imprimir el resultado
+print(" El Numero Mayor es: ", NumMay)
+  
