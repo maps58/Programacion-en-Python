@@ -1,0 +1,18 @@
+# Python suele incluir muchas funciones integradas que realizan
+# el trabajo por ti
+# Por ejemplo, para encontrar el número más grande de todos,
+# puedes utilizar una función integrada de Python llamada max().
+# Puedes usarla con múltiples argumentos. Analiza el siguiente código:
+
+
+num1 = int(input("Ingrese el primer numero: "))
+num2 = int(input("Ingrese el segundo numero: "))
+num3 = int(input("Ingrese el tercer numero: "))
+ 
+# Checar cual de los numeros es el mayor
+# y pasarlo a la variable NumMay
+
+NumMay = max(num1, num2, num3)
+ 
+# Imprimir el resultado.
+print("El numero mayor es", NumMay) 
