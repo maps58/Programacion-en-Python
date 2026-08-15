@@ -1,0 +1,45 @@
+import numpy as np
+import matplotlib.pyplot as plt
+# ==========================================
+# Función para calcular el divisor de voltaje
+# ==========================================
+def voltage_divider(vin, r1, r2):
+    return vin * r2 / (r1 + r2)
+# ==========================================
+# Datos del circuito
+# ==========================================
+vin = 12
+r1 = 1000       # 1 kΩ
+r2 = 2000       # 2 kΩ
+# ==========================================
+# Cálculo del voltaje de salida
+# ==========================================
+vout = voltage_divider(vin, r1, r2)
+print(f"Voltaje de salida: {vout:.2f} V")
+# ==========================================
+# Datos para la gráfica
+# ==========================================
+ratios = np.linspace(0.1, 10, 100)
+
+voltages = [
+    voltage_divider(12, 1000, 1000 * ratio)
+for ratio in ratios
+]
+# ==========================================
+# Crear la gráfica
+# ==========================================
+plt.figure(figsize=(8, 5))
+plt.plot(
+    ratios,
+    voltages,
+    label="Vout"
+)
+
+plt.xlabel("Relación R2/R1")
+plt.ylabel("Voltaje de salida (V)")
+plt.title("Divisor de voltaje")
+
+plt.grid(True)
+plt.legend()
+
+plt.show()
