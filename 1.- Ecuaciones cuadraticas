@@ -36,3 +36,9 @@ x2=(-b - sqrt((b**2) - (4*a*c)))/2*a
 print(" El valor de x1 = %2.2f"%(x1))
 print("x2 = %2.2f"%(x2)) 
 #*******************************************************
+"""
+En este punto, es importante poner de relieve de que no cualquier combinación de valores para «a», «b» y «c» nos va a conducir 
+al calculo de nuestra ecuación, ya que existen combinaciones de valores que harán que nuestra ecuación no tenga solución
+(lo cual tendremos que prever). A su vez, sabemos que si el valor de «a» es 0, nuestra ecuación de segundo grado se convertirá
+en una de primer grado. Por su parte, sabemos que si los 3 valores es 0, la ecuación tendrá infinitas soluciones. 
+Todas estas eventualidades las tendremos que tener previstas en nuestro programa:
