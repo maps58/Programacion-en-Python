@@ -1,5 +1,15 @@
 # RESOLUCIÓN DE ECUACIONES DE SEGUNDO GRADO
 
+""" El objetivo de éste código, es crear un sencillo programa 
+para resolver ecuaciones de segundo grado con resultado igual a 0,
+cuya expresion des como sigue:
+
+             ax^2 + bx + c = 0
+donde la solucion es:
+          x=(-b +- sqrt((b**2) - (4*a*c)))/2*a
+
+
+
 
 
 
