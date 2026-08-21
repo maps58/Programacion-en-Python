@@ -9,7 +9,7 @@ donde la solucion es:
           x=(-b +- sqrt((b**2) - (4*a*c)))/2*a
 """
 
-# 1.- Un codigo basico, sin restricciones.
+# 1.- Un codigo basico, sin restricciones (sin librerias.
 #*****************************************************
 a =float(input("ingresar el valor de a: "))
 b =float(input("ingresar el valor de b: "))
@@ -20,9 +20,8 @@ x2=(-b - ((b**2 - 4*a*c)**0.5))/2*a
                
 print(x1)
 print(x2)  
-#*****************************************************
-
-
+#*****************************************************#2,. 
+#2,. El siguiente código, realiza la misma operación pero con la libreria "math" y la función "sqrt"
 
 from math import sqrt
 
