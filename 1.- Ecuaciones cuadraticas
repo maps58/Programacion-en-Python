@@ -42,3 +42,37 @@ al calculo de nuestra ecuación, ya que existen combinaciones de valores que har
 (lo cual tendremos que prever). A su vez, sabemos que si el valor de «a» es 0, nuestra ecuación de segundo grado se convertirá
 en una de primer grado. Por su parte, sabemos que si los 3 valores es 0, la ecuación tendrá infinitas soluciones. 
 Todas estas eventualidades las tendremos que tener previstas en nuestro programa:
+A su vez, dado que existen combinaciones de datos que darán lugar a ecuaciones sin solución, enmarcaremos la ejecución de nuestro 
+programa en una sentencia «try». Por su parte, la primera circunstancia que vamos a contemplar es aquella en la que «a» sea 
+distinto de 0 («a!=0»). Lo que supondrá que estemos ante una ecuación de segundo grado:
+¨¨¨¨
+#***********************************************************
+from math import sqrt
+
+a = float(input("Ingresar el valor de a: "))
+b = float(input("Ingresar el valor de b: "))
+c = float(input("Ingresar el valor de c: "))
+try:
+    if a != 0:
+        discriminante = b**2 - 4*a*c
+
+        if discriminante > 0:
+            x1 = (-b + sqrt(discriminante)) / (2*a)
+            x2 = (-b - sqrt(discriminante)) / (2*a)
+
+            print("Solución x1 = %.3f" % x1)
+            print("Solución x2 = %.3f" % x2)
+
+        elif discriminante == 0:
+            x1 = -b / (2*a)
+
+            print("La ecuación tiene una sola solución:")
+            print("x = %.3f" % x1)
+
+        else:
+            print("La ecuación no tiene soluciones reales.")
+        else:
+        print("El valor de 'a' no puede ser cero.")
+except ValueError:
+    print("Ocurrió un error: ingrese solamente valores numéricos.")
+  
