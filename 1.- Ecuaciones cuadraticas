@@ -7,10 +7,20 @@ cuya expresion des como sigue:
              ax^2 + bx + c = 0
 donde la solucion es:
           x=(-b +- sqrt((b**2) - (4*a*c)))/2*a
+"""
 
+# 1.- Un codigo basico, sin restricciones.
+#*****************************************************
+a =float(input("ingresar el valor de a: "))
+b =float(input("ingresar el valor de b: "))
+c =float(input("ingresar el valor de c: "))
 
-
-
+x1=(-b + ((b**2 - 4*a*c)**0.5))/2*a
+x2=(-b - ((b**2 - 4*a*c)**0.5))/2*a
+               
+print(x1)
+print(x2)  
+#*****************************************************
 
 
 
