@@ -76,3 +76,56 @@ try:
 except ValueError:
     print("Ocurrió un error: ingrese solamente valores numéricos.")
   
+#Al final se contemplan todos los posibles casos
+from math import sqrt
+
+# Programa para resolver una ecuación de segundo grado
+# ax² + bx + c = 0
+
+print("==========================================")
+print("   ECUACIÓN DE SEGUNDO GRADO")
+print("   ax² + bx + c = 0")
+print("==========================================")
+
+# Entrada de datos
+a = float(input("Ingrese el valor de a: "))
+b = float(input("Ingrese el valor de b: "))
+c = float(input("Ingrese el valor de c: "))
+
+# Verificar que sea una ecuación de segundo grado
+if a == 0:
+    print("\nEl valor de 'a' no puede ser cero.")
+    print("La ecuación no es de segundo grado.")
+
+else:
+    # Calcular el discriminante
+    discriminante = b**2 - 4*a*c
+
+    print("\nDiscriminante =", discriminante)
+
+    # Analizar el discriminante
+    if discriminante > 0:
+
+        # Dos soluciones reales diferentes
+        x1 = (-b + sqrt(discriminante)) / (2*a)
+        x2 = (-b - sqrt(discriminante)) / (2*a)
+
+        print("\nLa ecuación tiene DOS soluciones reales:")
+        print("x1 = {:.3f}".format(x1))
+        print("x2 = {:.3f}".format(x2))
+
+    elif discriminante == 0:
+
+        # Una solución real
+        x = -b / (2*a)
+
+        print("\nLa ecuación tiene UNA solución real:")
+        print("x = {:.3f}".format(x))
+
+    else:
+
+        # No existen soluciones reales
+        print("\nLa ecuación NO tiene soluciones reales.")
+        print("El discriminante es negativo.")
+
+#*********************************************************************
