@@ -1,17 +1,18 @@
-#Código para crear una señal de 1 Hz.
+#Código para crear una señal senoidal.
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Data for plotting
-t = np.arange(0.0, 2.0, 0.01)
-s = 1 + np.sin(2 * np.pi * t)
+# Create sample data
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
 
-fig, ax = plt.subplots()
-ax.plot(t, s)
-
-ax.set(xlabel='time (s)', ylabel='voltage (mV)',
-       title='Señal Senoidal')
-ax.grid()
-fig.savefig("test.png")
+# Create line chart
+plt.figure(figsize=(10, 6))
+plt.plot(x, y, linewidth=2)
+plt.title('Time Series Analysis Example')
+plt.xlabel('Time')
+plt.ylabel('Value')
+plt.grid(True)
 plt.show()
+
 
