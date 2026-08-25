@@ -1,0 +1,15 @@
+# Este código es basico para utilizar el modulo matplotlib
+
+import matplotlib.pyplot as plt
+
+#create data points
+x = [1,2,3,4,5]
+y = [2,4,6,8,10]
+
+# Create plot line
+
+plt.plot(x,y,color='blue',marker ='o',linestyle='-')
+plt.title("Voltaje vs Corriente")
+plt.xlabel("Voltaje de la fuente de alimentación")
+plt.ylabel("Corriente directa del diodo")
+plt.show()
