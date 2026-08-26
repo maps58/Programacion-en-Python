@@ -2,17 +2,15 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Create sample data
-x = np.linspace(0, 10, 100)
-y = np.sin(x)
+#datos para plotear
 
-# Create line chart
-plt.figure(figsize=(10, 6))
-plt.plot(x, y, linewidth=2)
-plt.title('Time Series Analysis Example')
-plt.xlabel('Time')
-plt.ylabel('Value')
-plt.grid(True)
+t = np.arange(0.0, 2.0, 0.01)
+s = 2*np.sin(2*np.pi * 4 * t)
+
+fig, ax= plt.subplots()
+ax.plot(t,s)
+
 plt.show()
+
 
 
