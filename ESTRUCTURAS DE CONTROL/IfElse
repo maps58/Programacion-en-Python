@@ -1,0 +1,8 @@
+#Programa que calcula la longitud de un password
+
+password = str(input("ingrese su password:  "))
+
+if len(password) >= 8:
+  print(f"Welcome, {password}!")
+else:
+  print("Error: Your password is not the correct length.")
