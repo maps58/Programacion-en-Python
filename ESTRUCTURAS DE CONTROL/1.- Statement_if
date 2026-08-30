@@ -1,0 +1,14 @@
+#Genera Numeros aleatorios.
+
+from random import randint
+num = randint(1,10)
+
+print("Programa iniciado. Presiona Ctrl + C para salir.")
+try:
+    while True:
+        guess = eval(input('Enter your guess: '))
+        if guess==num:  
+            print('You got it!')
+        print("Fuera......")
+except KeyboardInterrupt:
+        print("\nPrograma detenido de forma segura por el usuario.")
