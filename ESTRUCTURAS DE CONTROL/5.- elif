@@ -1,0 +1,10 @@
+#Programa que checa al sensor de temperatura
+
+TempSensor = float(input("Ingresar valor Temperatura:  "))
+
+if TempSensor > 25:
+  print("The equipment is overheating")
+elif TempSensor == 25:
+  print("The equipmente is working in normal temperature")
+else:
+  print("Please check the air condicioning")
