@@ -1,0 +1,44 @@
+col={"negro":0,"marron":1,"rojo":2,"naranja":3, "amarillo":4,
+         "verde":5, "azul":6,"violeta":7,"gris":8,"blanco":9 }
+mult={"negro":1,"marron":10,"rojo":100,"naranja":1000,"amarillo":10000,
+      "verde":100000,"azul":1000000,"violeta":10000000,
+      "gris":100000000,"blanco": 1000000000}
+
+tol ={"oro":5, "plata":10}
+
+# Entrada de datos
+
+banda1 = input("Ingrese el color_banda1:").lower()
+banda2 = input("Ingrese el color_banda2:").lower()
+banda3 = input("Ingrese el color_banda3: ").lower()
+banda4 = input("Ingrese el color_banda4 (tolerancia):").lower()
+
+#Verificar que los colores sean correctos.
+
+if banda1 not in col or banda2 not in col:
+    print("Error: color incorrecto en las bandas 1 o 2.")
+elif banda3 not in mult:
+    print("Error: color incorrecto en la banda 3.")
+elif banda4 not in tol:
+    print("Error: color incorrecto en la banda 4.")
+
+else:    # Obtener los dos primeros dígitos
+
+    digito1 = col[banda1]
+    digito2 = col[banda2]
+
+# Formar el número
+
+valor_base = digito1 * 10 + digito2
+
+# Aplicar multiplicador
+
+resistencia = valor_base * mult[banda3]
+
+# Obtener tolerancia
+tol = tol[banda4]
+print("\n========== RESULTADO ==========")
+print(f"Resistencia: {resistencia} Ω")
+print(f"Tolerancia: ±{tol}%")
+print("===============================")
+
