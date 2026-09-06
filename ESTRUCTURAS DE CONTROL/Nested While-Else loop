@@ -1,0 +1,26 @@
+"""
+En este ejemplo, un bucle `while` recorre una lista de números y, para cada número no primo,
+busca el primer número compuesto comprobando la divisibilidad; al encontrarlo, interrumpe el bucle.
+Si no se encuentra ningún número compuesto, se ejecuta el bloque `else` del bucle exterior, 
+imprimiendo un mensaje.
+"""
+nums = [3, 5, 7, 4, 11, 13]
+i=0
+
+while i < len(nums):
+    if nums[i] > 1:
+        divisor = 2
+        while divisor < nums[i]:
+            if nums[i] % divisor == 0:
+                print(f"El primer numero compuesto en la lista es: {nums[i]}")
+                break
+            divisor += 1
+        else:
+            # Esta parte else del loop while es ejecutada si el numero es primo
+            i=i+1
+            continue
+        # Breaks el for loop si se ha encontrado un numero compuesto
+        break  
+else:
+    # Esta parte else se ejecuta si no se encuentra un numero compuesto.
+    print("No existe numero compuesto en la lista.")
