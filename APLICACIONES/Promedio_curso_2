@@ -1,0 +1,26 @@
+# Pedimos cuántos números tendrá la lista
+cantidad = int(input("Ingrese el numero de unidades de su materia: "))
+lista_numeros = []
+
+# Recogemos los números uno a uno
+for i in range(cantidad):
+  num = int(input(f"Ingresa el número {i + 1}: "))
+  lista_numeros.append(num)
+
+print("Tu lista final es:", lista_numeros)
+
+
+#calculamos la suma
+total = sum(lista_numeros)
+
+#calculamos la cantiddad de numeros    
+list_size = len(lista_numeros)
+average = total / list_size
+print("El promedio es: ", average)
+
+if average >= 70: 
+    print("Felicidades...curso aprobado")
+elif 40 <= average < 70:
+     print("Debe presentar 2a. Oportunidad!!!!")
+else:
+    print ("debe repetir el curso")
