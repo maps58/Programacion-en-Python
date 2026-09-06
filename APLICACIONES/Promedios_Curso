@@ -1,0 +1,22 @@
+# Para calcular calific<ciones del semestre:
+
+entrada = input("Ingresa los números separados por espacio:  ")
+# Convertimos cada elemento de la entrada en un número entero
+lista_numeros = [int(i) for i in entrada.split()]
+print("Tus calificaciones son:", lista_numeros)
+
+#calculamos la suma
+sum = 0
+for i in lista_numeros:
+    sum = sum + i#calculamos la cantiddad de numeros
+    
+list_size = len(lista_numeros)
+average = sum / list_size
+print(average)
+
+if average >= 70: 
+    print("Felicidades...curso aprobado")
+elif 40 <= average < 70:
+     print("Debe presentar 2a. Oportunidad!!!!")
+else:
+    print ("debe repetir el curso")
