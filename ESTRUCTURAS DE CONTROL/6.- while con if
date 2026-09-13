@@ -1,0 +1,25 @@
+# Este programa lee una secuencia de numeros
+# y cuenta cuandos son pares y cuantos impares
+# El programa termina cuando se ingresa un cero
+ 
+impares = 0
+pares = 0
+ 
+# Leer el primer numero.
+number = int(input("Ingrese un numero entero o un cero para detener la captura.  "))
+ 
+# 0 termina la captura.
+while number != 0:
+    # Checa si el numero es impar.
+    if number % 2 == 1:
+        # Incrementa el contador de impares.
+        impares += 1
+    else:
+        # Incrementa el numero de pares.
+        pares += 1
+    # lee el siguiente numero.
+    number = int(input("ingrese otro numero o 0 para detener la captura:  "))
+ 
+# Print results.
+print("Numero de impares = ", impares)
+print("Numero de pares = ", pares) 
