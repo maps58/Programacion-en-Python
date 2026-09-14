@@ -1,0 +1,10 @@
+# Definir la funcion de una compuerta OR.
+def or_gate(input_a, input_b):
+    return input_a | input_b  # Bitwise OR operator
+
+# Test the OR gate
+inputs = [(0, 0), (0, 1), (1, 0), (1, 1)]
+print("Input A | Input B | Output")
+for input_a, input_b in inputs:
+    output = or_gate(input_a, input_b)
+    print(f"   {input_a}    |    {input_b}    |    {output}")
