@@ -1,0 +1,13 @@
+# Definir una función not_gate (inverter)
+def not_gate(dato_logico):
+    if dato_logico == 0:
+        return 1  
+    else:
+        return 0
+
+# Generacion de la Tabla de Verdad
+bits = [0, 1]
+print("In | Out")
+for dato_logico in bits:
+    output = not_gate(dato_logico)
+    print(f"{dato_logico}  |  {output}")
