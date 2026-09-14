@@ -1,0 +1,12 @@
+# Crear la funcion de una compuerta NAND
+
+def NAND_gate(A, B):
+    return int(not (A and B))
+
+# Test cases
+inputs = [(0, 0), (0, 1), (1, 0), (1, 1)]
+print("A B | NAND Output")
+print("-----------------")
+for A, B in inputs:
+    print(A, B, "|", NAND_gate(A, B))
+
