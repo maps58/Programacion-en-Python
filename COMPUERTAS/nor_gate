@@ -1,0 +1,8 @@
+#Definir la funcion de la compuerta NOR
+def NOR_gate(A, B):
+    return int(not (A or B))
+
+# Testing all possible inputs
+inputs = [(0, 0), (0, 1), (1, 0), (1, 1)]
+for A, B in inputs:
+    print(f"NOR({A}, {B}) = {NOR_gate(A, B)}")
