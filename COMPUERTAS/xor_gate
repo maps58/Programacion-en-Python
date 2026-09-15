@@ -1,0 +1,9 @@
+
+#Definir la funcion de la compuerta NOR
+def XOR_gate(A, B):
+    return int(A ^ B)
+
+# Testing all possible inputs
+inputs = [(0, 0), (0, 1), (1, 0), (1, 1)]
+for A, B in inputs:
+    print(f"XOR({A}, {B}) = {XOR_gate(A, B)}")
