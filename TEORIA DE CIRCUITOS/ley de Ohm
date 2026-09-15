@@ -1,0 +1,31 @@
+def calcular_ley_ohm():
+
+    print("\t******calculadora de la Ley de Ohm******\n")    
+    print("1. Calcular Voltaje (V)")
+    print("2. Calcular Corriente (I)")
+    print("3. Calcular Resistencia (R)\n")
+    
+    opcion = input("Elegir una opción (1, 2 o 3):  ")
+    
+    if opcion == "1":
+        i = float(input("Ingresa la corriente en ampers (A): "))
+        r = float(input("Ingresa la resistencia en ohms (Ω): "))
+        v = i * r
+        print(f"El voltaje es: {v} V")
+        
+    elif opcion == "2":
+        v = float(input("Ingresa el voltaje en volts (V): "))
+        r = float(input("Ingresa la resistencia en ohms (Ω): "))
+        i = v / r
+        print(f"La corriente es: {i} A")
+        
+    elif opcion == "3":
+        v = float(input("Ingresa el voltaje en volts (V): "))
+        i = float(input("Ingresa la corriente en ampers (A): "))
+        r = v / i
+        print(f"La resistencia es: {r} Ω")
+        
+    else:
+        print("Opción no válida.")
+
+calcular_ley_ohm()
