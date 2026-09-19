@@ -1,0 +1,20 @@
+ # Almacenar el numero mas grande aca.
+NumMay = -999999999
+ 
+# Entrada del primer numero.
+num = int(input("Ingresar un numero o 0 para detenerse: "))
+ 
+# Si un numero es diferente a 0, continuar.
+while num != 0:
+    
+    # Es num mayor que NumMay?
+    
+    if num > NumMay:
+        # Si, actualizar NumMay.
+        NumMay = num
+        
+    # Ingresar el siguiente numero.
+    num = int(input("Ingrese otro numero o 0 para detener el programa: "))
+ 
+# Imprimir el numero mayor.
+print("El Numero Mayor es:", NumMay) 
