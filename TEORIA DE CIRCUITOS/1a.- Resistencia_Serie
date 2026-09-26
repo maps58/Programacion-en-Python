@@ -1,0 +1,24 @@
+try:
+    while True:
+
+        # Total de resistencias
+        cantidad = int(input("Total de resistencias en su circuito Serie: "))
+
+        lista_resistencias = []
+
+        # Recogemos los números uno a uno
+        for i in range(cantidad):
+            num = int(input(f"Ingresa el valor de R{i + 1}: "))
+            lista_resistencias.append(num)
+
+        # Mostrar la lista
+        print("Tu lista final es:", lista_resistencias)
+
+        # Calculamos la suma
+        total = sum(lista_resistencias)
+
+        print("Resistencia total:", total, "Ω")
+        #print()
+
+except KeyboardInterrupt:
+    print("\nPrograma terminado por el usuario.")
