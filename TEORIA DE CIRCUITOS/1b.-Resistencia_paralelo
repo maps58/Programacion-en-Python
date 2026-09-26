@@ -1,0 +1,30 @@
+def ResParal(resistencias):
+
+    """Calcula la resistencia equivalente de varias
+       resistencias conectadas en paralelo."""
+
+    suma = 0
+    for R in resistencias:
+        suma += 1 / R
+    Rt = 1 / suma
+    return Rt
+
+
+# Programa principal
+try:
+    while True:
+        cantidad = int(input("Numero de Resistencias en Paralelo: "))
+        lista_resistencias = []
+        for i in range(cantidad):
+            R = float(input(f"Ingrese el valor de R{i + 1} en ohms: "))
+            lista_resistencias.append(R)
+        print("\nResistencias:", lista_resistencias)
+
+        # Llamamos a la función
+        Rt = ResParal(lista_resistencias)
+
+        print(f"La resistencia equivalente es: {Rt:.2f} ohms")
+
+except KeyboardInterrupt:
+    print("\nPrograma terminado por el usuario.")
+
