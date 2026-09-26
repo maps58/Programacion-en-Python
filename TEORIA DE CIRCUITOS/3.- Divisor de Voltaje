@@ -1,0 +1,36 @@
+def DivVolt(Vin, R_list):
+    """
+    Calcula el voltaje en cada resistencia
+    de un divisor de voltaje con n resistencias.
+    """
+    # Resistencia total
+    Rtotal = sum(R_list)
+    # Lista donde se guardan los voltajes
+    voltajes = []
+    # Se calcula el voltaje en cada resistencia
+    for R in R_list:
+        V = Vin * (R / Rtotal)
+        voltajes.append(V)
+
+    return Rtotal, voltajes
+
+# Programa principal
+
+Vin = float(input("Ingresar el voltaje de entrada: "))
+cantidad = int(input("Número de resistencias del divisor: "))
+R_list = []
+
+for i in range(cantidad):
+    R = float(input(f"Ingrese el valor de R{i + 1} en ohms: "))
+    R_list.append(R)
+
+# Se llama a la función
+Rtotal, voltajes = DivVolt(Vin, R_list)
+
+# Se muestran resultados
+print("\nResistencias:", R_list)
+print(f"Resistencia total: {Rtotal:.2f} ohms")
+
+for i in range(cantidad):
+    print(f"Voltaje en R{i + 1}: {voltajes[i]:.2f} V")
+
