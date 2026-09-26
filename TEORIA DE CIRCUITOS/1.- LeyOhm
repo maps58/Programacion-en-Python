@@ -1,0 +1,45 @@
+try:
+    while True:
+
+        def LeyOhm(V=None, R = None, I = None):
+            
+            #while (1):
+            values = [V, R, I]
+
+            if values.count(None) != 1:
+                 raise ValueError("Debes proporcionar exactamente dos valores.")
+          
+            if V is None:
+                return I * R
+
+            elif I is None:
+                return V / R
+
+            elif R is None:
+                return V / I
+
+        print("******************CALCULADORA LEY DE OHM********************\n")         
+        # Entrada de datos
+        V = input("Ingrese el voltaje (V), o Enter si es desconocido: ")
+        I = input("Ingrese la corriente (A), o Enter si es desconocida: ")
+        R = input("Ingrese la resistencia (Ω), o Enter si es desconocida: ")
+
+        # Convertir los datos
+        V = float(V) if V else None
+        I = float(I) if I else None
+        R = float(R) if R else None
+
+        # Calcular
+        Resultado = LeyOhm(V, R, I)
+
+        if V is None:
+            print (f"Resultado es {Resultado} Volts")
+        elif R is None:
+            print (f"Resultado es {Resultado} Ohms")
+        elif I is None:
+            print (f"Resultado es {Resultado} Ampers")
+
+except KeyboardInterrupt:   
+    print("\nPrograma terminado por el usuario.")
+    
+
