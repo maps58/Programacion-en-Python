@@ -1,0 +1,22 @@
+import numpy as np
+
+"""
+Sistema de ecuaciones a resolver
+690_I1 + 220_I3 = 2
+220_I1 + 1040_I2 = 6
+"""
+import numpy as np
+
+# Matriz de coeficientes (A) con las resistencias/términos de las corrientes
+A = np.array([
+    [690,220],
+    [220,1040]])
+
+# Vector de términos independientes (B) con los voltajes
+B = np.array([10, 5])
+
+# Resolver el sistema de ecuaciones AX = B
+I = np.linalg.solve(A, B)
+
+print(f"Corriente I1: {I[0]:.4f} A")
+print(f"Corriente I3: {I[1]:.4f} A")
