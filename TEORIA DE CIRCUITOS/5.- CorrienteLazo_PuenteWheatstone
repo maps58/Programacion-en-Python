@@ -6,8 +6,6 @@ Sistema de ecuaciones a resolver
 -270_I1 + 10600_I2 -10000_I3 = 0
 -330I_11 -10000_I2 + 11150I_3 = 0
 """
-import numpy as np
-
 # Matriz de coeficientes (A) con las resistencias/términos de las corrientes
 A = np.array([
     [600,-270,-330],
