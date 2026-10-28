@@ -1,0 +1,103 @@
+from tkinter import *
+from math import *
+from PIL import Image,ImageTk
+ 
+#VISUALIZAR LA OPERACION EN LA PANTALLA
+def btnClik(num):
+    global operador
+    operador=operador+str(num)
+    input_text.set(operador)
+ 
+#CÁLCULO Y MUESTRA DE RESULTADOS.
+def resultado():
+    global operador
+    try:
+        opera=str(eval(operador))
+        input_text.set(opera)
+    except:
+        input_text.set("ERROR")
+    operador = ""
+ 
+#LIMPIEZA DE PANTALLA.
+def clear():
+    global operador
+    operador=("")
+    input_text.set("Hi Maps, Welcome")
+ 
+ 
+root=Tk()
+root.title("CALCULADORA")
+root.geometry("392x620")
+root.configure(background="#6b1d2f")
+color_boton=("gray77")
+
+styled_label = Label(
+    root, 
+    text="SCIENTIFIC CALCULATOR", 
+    font=("Arial", 15, "bold"), 
+    bg="#6b1d2f", 
+    fg="gray77", 
+    padx=15, 
+    pady=10,
+    relief="ridge",
+    borderwidth=10
+)
+styled_label.pack(pady=10)
+
+#Definición de la dimension de los botones 
+ancho_boton=10
+alto_boton=3
+input_text=StringVar()
+operador=""
+
+# Definicion de la ventana Entry 
+Salida=Entry(root,font=('arial',15,'bold'),width=30,
+textvariable=input_text,bd=20,insertwidth=4,bg="linen",justify="right")
+Salida.place(x=10,y=60)
+ 
+
+#CREAMOS LOS BOTONES
+Boton0=Button(root,text="0",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik(0)).place(x=17,y=180)
+Boton1=Button(root,text="1",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik(1)).place(x=107,y=180)
+Boton2=Button(root,text="2",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik(2)).place(x=197,y=180)
+Boton3=Button(root,text="3",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik(3)).place(x=287,y=180)
+Boton4=Button(root,text="4",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik(4)).place(x=17,y=240)
+Boton5=Button(root,text="5",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik(5)).place(x=107,y=240)
+Boton6=Button(root,text="6",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik(6)).place(x=197,y=240)
+Boton7=Button(root,text="7",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik(7)).place(x=287,y=240)
+Boton8=Button(root,text="8",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik(8)).place(x=17,y=300)
+Boton9=Button(root,text="9",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik(9)).place(x=107,y=300)
+Boton10=Button(root,text="π",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik("pi")).place(x=197,y=300)
+Boton11=Button(root,text=",",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik(".")).place(x=287,y=300)
+Boton12=Button(root,text="+",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik("+")).place(x=17,y=360)
+Boton13=Button(root,text="-",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik("-")).place(x=107,y=360)
+Boton14=Button(root,text="*",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik("*")).place(x=197,y=360)
+Boton15=Button(root,text="/",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik("/")).place(x=287,y=360)
+Boton16=Button(root,text="√",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik("sqrt(")).place(x=17,y=420)
+Boton17=Button(root,text="C",bg=color_boton,width=ancho_boton,height=alto_boton,command=clear).place(x=107,y=420)
+Boton18=Button(root,text="EXP",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik("**")).place(x=197,y=420)
+Boton19=Button(root,text="=",bg=color_boton,width=ancho_boton,height=alto_boton,command=resultado).place(x=287,y=420)
+Boton20=Button(root,text="(",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik("(")).place(x=17,y=480)
+Boton21=Button(root,text=")",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik(")")).place(x=107,y=480)
+Boton22=Button(root,text="%",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik("%")).place(x=197,y=480)
+Boton23=Button(root,text="log_10",bg=color_boton,width=ancho_boton,height=alto_boton,command=lambda:btnClik("log10(")).place(x=287,y=480)
+
+# LOGO DEL INSTITUTO POLITÉCNICO NACIONAL
+
+imagen = Image.open("logo_ipn.png")
+imagen = imagen.resize((60,60))
+
+logo = ImageTk.PhotoImage(imagen)
+
+etiqueta_logo = Label(
+    root,
+    image=logo,
+    relief="raised",
+    borderwidth=10,
+    bg="#6b1d2f"
+    
+)
+etiqueta_logo.place(x=10, y=545)
+ 
+clear() 
+root.mainloop()
