@@ -1,0 +1,40 @@
+
+#Agregando un tercer atributo (terminales)
+
+# DEFINICIÓN DE LA CLASE TRANSISTOR
+
+"""Se está utilizando una sola clase (transistor),
+dos objetos y cuatro métodos de instancia"""
+
+class transistor:
+
+    # Método constructor
+    def __init__(self, tipo, control,terminales):
+
+        self.tipo = tipo
+        self.control = control
+        self.terminales = terminales
+        
+    # Se utilizan 4 métodos de instancia.
+    def mi_transistor(self):
+        return f"Un transistor BJT es del tipo {self.tipo} con terminales: {self.terminales}"
+    def otro_transistor(self):
+          return f"Un transistor UJT es del tipo {self.tipo} con terminales: {self.terminales}"    
+    def funcion1(self):
+        return f"El transistor {self.tipo} es controlado por {self.control}"
+ 
+#Se utilizan 2 objetos
+
+# Creación de 2 Objetos(Nombre_objeto,tipo,variable de control) .
+# los objetos tambien se llaman instancias.
+Transistor_bipolar = transistor("NPN o PNP", "corriente","Base,Emisor,Colector")
+Transistor_unipolar = transistor("JFET o MOSFET", "voltaje","Gate,Drain,Source")
+
+# ACCEDER A LOS MÉTODOS
+
+print("\n\t\t----------TRANSISTOR BIPOLAR------------\n")
+print(Transistor_bipolar.mi_transistor())
+print(Transistor_bipolar.funcion1())
+print("\n\t\t----------TRANSISTOR UNIPOLAR------------\n")
+print(Transistor_unipolar.otro_transistor())
+print(Transistor_unipolar.funcion1())
