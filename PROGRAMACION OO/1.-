@@ -1,0 +1,37 @@
+
+# DEFINICIÓN DE LA CLASE TRANSISTOR
+
+"""Se está utilizando una sola clase (transistor),
+dos objetos y cuatro métodos de instancia"""
+
+class transistor:
+
+    # Método constructor
+    def __init__(self, tipo, control):
+
+        self.tipo = tipo
+        self.control = control
+
+    # Se utilizan 4 métodos de instancia.
+    def mi_transistor(self):
+        return f"Un transistor BJT es del tipo {self.tipo}"
+    def otro_transistor(self):
+        return f"Un transistor UJT es del tipo {self.tipo}"    
+    def funcion1(self):
+        return f"El transistor {self.tipo} es controlado por {self.control}"
+    def funcion2(self):
+        return f"El transistor {self.tipo} es controlado por {self.control}"
+
+#Se utilizan 2 objetos
+
+# Creación de 2 Objetos(Nombre_objeto,tipo,variable de control) .
+
+Transistor_bipolar = transistor("NPN o PNP  ", "corriente")
+Transistor_unipolar = transistor("JFET o MOSFET", "voltaje")
+
+# ACCEDER A LOS MÉTODOS
+
+print(Transistor_bipolar.mi_transistor())
+print(Transistor_bipolar.funcion1())
+print(Transistor_unipolar.otro_transistor())
+print(Transistor_unipolar.funcion2())
