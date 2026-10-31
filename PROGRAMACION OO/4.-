@@ -1,0 +1,279 @@
+
+import tkinter as tk
+from tkinter import ttk, messagebox
+from PIL import Image, ImageTk
+
+
+class CalculadoraLogica:
+
+    def __init__(self, root):
+
+        self.root = root
+        self.root.title("CALCULADORA BINARIA")
+        self.root.geometry("600x750")
+        self.root.configure(bg="white")
+
+        # Título principal
+        titulo = tk.Label(
+            root,
+            text="OPERACIONES BOOLEANAS \n CON DIVERSOS SISTEMAS NUMERICOS",
+            font=("Arial", 14, "bold"),
+            bg="azure"
+        )
+        titulo.pack(pady=15)
+
+        # Selector del sistema numérico
+        tk.Label(
+            root,
+            text="Seleccione el sistema numérico:",
+            font=("Arial", 12),
+            bg="azure"
+        ).pack(pady=5)
+
+        self.sistema = ttk.Combobox(
+            root,
+            values=["BINARIO", "HEXADECIMAL","OCTAL"],
+            state="readonly",
+            font=("Arial", 12),
+            width=18
+        )
+        self.sistema.set("BINARIO")
+        self.sistema.pack(pady=5)
+
+        # Entradas de los operandos
+        frame_entradas = tk.Frame(root, bg="white")
+        frame_entradas.pack(pady=15)
+
+        tk.Label(
+            frame_entradas,
+            text="Operando A:",
+            font=("Arial", 12, "bold"),
+            bg="white"
+        ).grid(row=0, column=0, padx=10)
+
+        tk.Label(
+            frame_entradas,
+            text="Operando B:",
+            font=("Arial", 12, "bold"),
+            bg="white"
+        ).grid(row=0, column=1, padx=10)
+
+        self.entry_a = tk.Entry(
+            frame_entradas,
+            font=("Arial", 14),
+            width=12,
+            justify="center"
+        )
+        self.entry_a.grid(row=1, column=0, padx=10, pady=10)
+
+        self.entry_b = tk.Entry(
+            frame_entradas,
+            font=("Arial", 14),
+            width=12,
+            justify="center"
+        )
+        self.entry_b.grid(row=1, column=1, padx=10, pady=10)
+
+        # Botones de operaciones
+        frame_botones = tk.Frame(root, bg="white")
+        frame_botones.pack(pady=10)
+
+        operaciones = [
+            "AND", "NAND",
+            "OR", "NOR",
+            "XOR", "XNOR",
+            "NOT_A", "NOT_B"
+        ]
+
+        for i, operacion in enumerate(operaciones):
+
+            boton = tk.Button(
+                frame_botones,
+                text=operacion,
+                font=("Arial", 11, "bold"),
+                width=12,
+                command=lambda op=operacion: self.calcular(op)
+            )
+
+            boton.grid(
+                row=i // 2,
+                column=i % 2,
+                padx=10,
+                pady=7
+            )
+
+        # Resultado
+        tk.Label(
+            root,
+            text="RESULTADO:",
+            font=("Arial", 13, "bold"),
+            bg="white"
+        ).pack(pady=10)
+
+        self.lbl_resultado = tk.Label(
+            root,
+            text="",
+            font=("Arial", 16, "bold"),
+            fg="blue",
+            bg="white"
+        )
+        self.lbl_resultado.pack(pady=5)
+
+        # Imagen de compuertas lógicas (opcional)
+        try:
+            imagen = Image.open("compuertas.png")
+            imagen = imagen.resize((100,100))
+            self.imagen = ImageTk.PhotoImage(imagen)
+
+            tk.Label(
+                root,
+                image=self.imagen,
+                bg="white"
+            ).pack(pady=0)
+
+        except FileNotFoundError:
+            tk.Label(
+                root,
+                text="Imagen no encontrada",
+                bg="white",
+                fg="gray"
+            ).pack(pady=0)
+
+        # Botón limpiar
+        tk.Button(
+            root,
+            text="RESET",
+            font=("Arial", 11, "bold"),
+            width=15,
+            command=self.limpiar
+        ).pack(pady=10)
+
+        # Créditos
+        tk.Label(
+            root,
+            text="Código hecho por MIGUEL ANGEL PEREZ SOLANO",
+            font=("Arial", 9),
+            bg="white"
+        ).pack(pady=3)
+
+        tk.Label(
+            root,
+            text="Departamento de Ingeniería Eléctrica y Electrónica",
+            font=("Arial", 9),
+            bg="white"
+        ).pack()
+
+    # Convertir entrada al sistema decimal
+    def convertir_decimal(self, valor, sistema):
+
+        if sistema == "BINARIO":
+            numero = int(valor, 2)
+
+        elif sistema == "OCTAL":
+            numero = int(valor, 8)
+
+        elif sistema == "HEXADECIMAL":
+            numero = int(valor, 16)
+
+        else:
+            raise ValueError("Sistema numérico no válido")
+
+        return numero
+
+    # Convertir resultado al sistema seleccionado
+    def convertir_salida(self, resultado, sistema):
+
+        if sistema == "BINARIO":
+            return bin(resultado)[2:]
+
+        elif sistema == "OCTAL":
+            return str(resultado)
+
+        elif sistema == "HEXADECIMAL":
+            return format(resultado, "X")
+
+    # Realizar operaciones lógicas
+    def calcular(self, operacion):
+
+        try:
+
+            sistema = self.sistema.get()
+
+            entrada_a = self.entry_a.get().strip()
+            entrada_b = self.entry_b.get().strip()
+
+            if not entrada_a:
+                raise ValueError("Ingresa el operando A")
+
+            # Convertimos el operando A
+            a = self.convertir_decimal(entrada_a, sistema)
+
+            # NOT solamente necesita el operando A
+            if operacion in ("NOT_A", "NOT_B"):
+                b = 0
+            else:
+                if not entrada_b:
+                    raise ValueError("Ingresa el operando B")
+
+                b = self.convertir_decimal(entrada_b, sistema)
+
+            # Determinar el número de bits según los operandos
+            bits = max(a.bit_length(), b.bit_length(), 1)
+            mascara = (1 << bits) - 1
+
+            # Operaciones lógicas bit a bit
+            if operacion == "AND":
+                resultado = a & b
+
+            elif operacion == "NAND":
+                resultado = (~(a & b)) & mascara
+
+            elif operacion == "OR":
+                resultado = a | b
+
+            elif operacion == "NOR":
+                resultado = (~(a | b)) & mascara
+
+            elif operacion == "XOR":
+                resultado = a ^ b
+
+            elif operacion == "XNOR":
+                resultado = (~(a ^ b)) & mascara
+
+            elif operacion == "NOT_A":
+                resultado = (~a) & mascara
+
+            elif operacion == "NOT_B":
+                # Para NOT B, se necesita el operando B.
+                # Si B está vacío, se solicita su valor.
+                if not entrada_b:
+                    raise ValueError("Ingresa el operando B")
+                b = self.convertir_decimal(entrada_b, sistema)
+                bits = max(b.bit_length(), 1)
+                mascara = (1 << bits) - 1
+                resultado = (~b) & mascara
+
+            # Convertir resultado al sistema seleccionado
+            salida = self.convertir_salida(resultado, sistema)
+
+            self.lbl_resultado.config(
+                text=f"{operacion}: {salida}"
+            )
+
+        except ValueError as error:
+            messagebox.showerror("Error", str(error))
+
+    # Limpiar entradas y resultado
+    def limpiar(self):
+
+        self.entry_a.delete(0, tk.END)
+        self.entry_b.delete(0, tk.END)
+        self.lbl_resultado.config(text="")
+
+
+# Programa principal
+if __name__ == "__main__":
+
+    root = tk.Tk()
+    app = CalculadoraLogica(root)
+    root.mainloop()
