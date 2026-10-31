@@ -1,0 +1,266 @@
+
+# ==========================================
+# CALCULADORA DE OPERACIONES BOOLEANAS
+# ==========================================
+
+import tkinter as tk
+from tkinter import ttk, messagebox
+from PIL import Image, ImageTk
+
+class CalculadoraLogica:
+
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Calculadora de Operaciones Lógicas")
+        self.root.geometry("550x700")
+        self.root.resizable(False, False)
+        self.root.configure(bg="white")
+
+        # Titulo principal
+        etiq_tit = tk.Label(
+            root,
+            text="OPERACIONES BOOLEANAS",
+            font=("Arial", 17, "bold"),
+            bg="white",
+            fg="navy"
+        )
+        etiq_tit.pack(pady=15)
+
+        # ==================================
+        # ENTRADAS A Y B
+        # ==================================
+
+        marco_entradas = tk.LabelFrame(
+            root,
+            text="Entradas binarias",
+            font=("Arial", 11, "bold"),
+            padx=15,
+            pady=10
+        )
+        marco_entradas.pack(pady=5)
+
+        tk.Label(
+            marco_entradas,
+            text="Valor A (0 o 1):",
+            font=("Arial", 11)
+        ).grid(row=0, column=0, padx=10, pady=5)
+
+        self.entry_a = ttk.Combobox(
+            marco_entradas,
+            values=["0", "1"],
+            width=10,
+            state="readonly"
+        )
+
+        self.entry_a.current(0)
+        self.entry_a.grid(row=0, column=1, padx=10, pady=5)
+
+        tk.Label(
+            marco_entradas,
+            text="Valor B (0 o 1):",
+            font=("Arial", 11)
+        ).grid(row=1, column=0, padx=10, pady=5)
+
+        self.entry_b = ttk.Combobox(
+            marco_entradas,
+            values=["0", "1"],
+            width=10,
+            state="readonly"
+        )
+
+        self.entry_b.current(0)
+        self.entry_b.grid(row=1, column=1, padx=10, pady=5)
+
+        # ==================================
+        # BOTONES DE OPERACIONES
+        # ==================================
+
+        marco_botones = tk.LabelFrame(
+            root,
+            text="Operaciones Lógicas",
+            font=("Arial", 11, "bold"),
+            padx=10,
+            pady=10
+        )
+
+        marco_botones.pack(pady=10)
+
+        operaciones = [
+            ("AND", "AND"),
+            ("NAND", "NAND"),
+            ("OR", "OR"),
+            ("NOR", "NOR"),
+            ("XOR", "XOR"),
+            ("XNOR", "XNOR"),
+            ("NOT_A", "NOT_A"),
+            ("NOT_B", "NOT_B")
+        ]
+
+        for i, (texto, operacion) in enumerate(operaciones):
+
+            boton = ttk.Button(
+                marco_botones,
+                text=texto,
+                width=15,
+                command=lambda op=operacion: self.calcular(op)
+            )
+
+            boton.grid(
+                row=i // 2,
+                column=i % 2,
+                padx=10,
+                pady=5
+            )
+
+        # ==================================
+        # IMAGEN DE COMPUERTAS LOGICAS
+        # ==================================
+
+        marco_imagen = tk.LabelFrame(
+            root,
+            text="Representación de compuertas lógicas",
+            font=("Arial", 10, "bold"),
+            bg="white"
+        )
+
+        marco_imagen.pack(pady=5)
+
+        try:
+
+            imagen_original = Image.open("compuertas.jpg")
+            imagen_original = imagen_original.resize(
+                (300, 130),
+                Image.Resampling.LANCZOS
+            )
+
+            self.imagen = ImageTk.PhotoImage(imagen_original)
+            self.lbl_imagen = tk.Label(
+                marco_imagen,
+                image=self.imagen,
+                bg="white"
+            )
+
+            self.lbl_imagen.pack(padx=5, pady=5)
+
+        except FileNotFoundError:
+
+            tk.Label(
+                marco_imagen,
+                text="No se encontró el archivo compuertas.png",
+                fg="red",
+                bg="white"
+            ).pack(padx=10, pady=20)
+
+        # ==================================
+        # PANTALLA DE RESULTADOS
+        # ==================================
+
+        self.lbl_resultado = tk.Label(
+            root,
+            text="Resultado: -",
+            font=("Arial", 16, "bold"),
+            fg="navy",
+            bg="white"
+        )
+
+        self.lbl_resultado.pack(pady=10)
+
+        # ==================================
+        # BOTON LIMPIAR
+        # ==================================
+
+        btn_limpiar = ttk.Button(
+            root,
+            text="LIMPIAR",
+            width=15,
+            command=self.limpiar
+        )
+
+        btn_limpiar.pack(pady=5)
+
+        # Créditos
+        tk.Label(
+            root,
+            text="Código creado por MIGUEL ANGEL PEREZ SOLANO\n"
+                 "Departamento de Ingeniería Eléctrica y Electrónica",
+            font=("Arial", 8),
+            bg="white",
+            fg="blue"
+        ).pack(side="bottom", pady=10)
+
+    # ======================================
+    # METODO PARA CALCULAR OPERACIONES
+    # ======================================
+
+    def calcular(self, operacion):
+
+        try:
+
+            val_a = int(self.entry_a.get())
+            val_b = int(self.entry_b.get())
+
+            if operacion == "AND":
+                res = int(val_a and val_b)
+
+            elif operacion == "NAND":
+                res = int(not (val_a and val_b))
+
+            elif operacion == "OR":
+                res = int(val_a or val_b)
+
+            elif operacion == "NOR":
+                res = int(not (val_a or val_b))
+
+            elif operacion == "XOR":
+                res = val_a ^ val_b
+
+            elif operacion == "XNOR":
+                res = int(not (val_a ^ val_b))
+
+            elif operacion == "NOT_A":
+                res = int(not val_a)
+
+            elif operacion == "NOT_B":
+                res = int(not val_b)
+
+            else:
+                raise ValueError("Operación no reconocida")
+
+            self.lbl_resultado.config(
+                text=f"Resultado ({operacion}): {res}"
+            )
+
+        except Exception as e:
+
+            messagebox.showerror(
+                "Error",
+                f"Ocurrió un error: {e}"
+            )
+
+    # ======================================
+    # METODO PARA LIMPIAR
+    # ======================================
+
+    def limpiar(self):
+
+        self.entry_a.current(0)
+        self.entry_b.current(0)
+
+        self.lbl_resultado.config(
+            text="Resultado: -"
+        )
+
+
+# ==========================================
+# PROGRAMA PRINCIPAL
+# ==========================================
+
+if __name__ == "__main__":
+
+    window = tk.Tk()
+
+    app = CalculadoraLogica(window)
+
+    window.mainloop()
+
+   
